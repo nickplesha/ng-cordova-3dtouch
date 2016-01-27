@@ -18,7 +18,7 @@ cordova plugin add cordova-plugin-3dtouch
 Include `3dtouch.js` after the rest of your Ionic and Angular includes.
 
 ```html
-<script src="lib/ngCordova-3dtouch/3dtouch.js"></script>
+<script src="lib/ngCordova-3dtouch/dist/3dtouch.js"></script>
 ```
 
 Add `ngCordova.plugins.3dtouch` as a module dependency of your app.
@@ -57,7 +57,7 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 })
 ```
 
-`Favorite` is the name of a default included icon in iOS. You can find all of them here: [Apple developer documentation.](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType)
+`Favorite` is the name of one of the default included quick action icons in iOS. You can find a list of them in the [Apple developer documentation.](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType)
 Or you can add a custom `.png` icon (size 70x70 or 105x105) to your `Resources` folder in Xcode.
 
 ### Static Home Screen Quick Actions
