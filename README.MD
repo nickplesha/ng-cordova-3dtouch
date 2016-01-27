@@ -95,6 +95,24 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 })
 ```
 
+If you want to use your custom icon add this to your `.plist` file instead:
+
+```
+<key>UIApplicationShortcutItems</key>
+<array>
+    <dict>
+        <key>UIApplicationShortcutItemIconFile</key>
+        <string>customicon</string>
+        <key>UIApplicationShortcutItemTitle</key>
+        <string>Favorites</string>
+        <key>UIApplicationShortcutItemType</key>
+        <string>favorites</string>
+    </dict>
+</array>
+```
+
+where `customicon` is the name of a `.png` image you need to drag into your `Resources` folder in Xcode. It needs to be square, single color and at least 35x35.
+
 ### Force Touch
 
 You can add a handler function for force touch events. Handler will be called when at least 75% force is applied to the screen. Additional information sent is the timestamp and coordinates.
