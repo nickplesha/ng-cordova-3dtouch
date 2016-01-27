@@ -58,7 +58,6 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 ```
 
 `Favorite` is the name of one of the default included quick action icons in iOS. You can find a list of them in the [Apple developer documentation.](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType)
-Or you can add a custom `.png` icon (size 70x70 or 105x105) to your `Resources` folder in Xcode.
 
 ### Static Home Screen Quick Actions
 
