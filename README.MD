@@ -146,7 +146,7 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 
 ### Link Preview
 
-You can enable link previews in popups when a link is force pressed.
+You can enable link previews (Peek and Pop) when a link is force pressed.
 
 ```
 angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
