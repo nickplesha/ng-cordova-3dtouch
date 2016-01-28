@@ -56,16 +56,25 @@
              * @param    function callback (optional)
              * @return   promise
              */
-            addQuickAction: function(type, title, iconType, subtitle, callback) {
+            addQuickAction: function(type, title, iconType, iconTemplate, subtitle, callback) {
                 var deferred = $q.defer();
 
+                var quickAction = {
+                    type,
+                    title,
+                    subtitle
+                };
+
+                if (iconType) {
+                    quickAction.iconType = iconType;
+                }
+
+                if (iconTemplate) {
+                    quickAction.iconTemplate = iconTemplate;
+                }
+
                 this.isAvailable().then(function() {
-                    quickActions.push({
-                        type,
-                        title,
-                        subtitle,
-                        iconType
-                    });
+                    quickActions.push(quickAction);
                     quickActionHandler[type] = callback;
                     ThreeDeeTouch.configureQuickActions(quickActions);
                     ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);

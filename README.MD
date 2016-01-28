@@ -46,10 +46,16 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 .run(function($ionicPlatform, $cordova3DTouch, $state) {
     $ionicPlatform.ready(function() {
 
-        //Add a dynamic quick action with title: Favorites and a "star" icon
-        $cordova3DTouch.addQuickAction('favorites', 'Favorites', 'Favorite' 'Posts you marked as favorite', function() {
+        //Add a dynamic quick action with title "Saved" and a built-in "Favorite" icon
+        $cordova3DTouch.addQuickAction('saved', 'Saved', 'Favorite', null, 'Posts you saved for later', function() {
             //Navigate to target state when the quick action was pressed on home screen
-            $state.go('tab.favorite');
+            $state.go('tab.saved');
+        });
+
+        //Add a dynamic quick action with title "Frontpage" and a custom 'customicon' icon from the Resources folder
+        $cordova3DTouch.addQuickAction('frontpage', 'Frontpage', null, 'customicon', 'Latest posts', function() {
+            //Navigate to target state when the quick action was pressed on home screen
+            $state.go('tab.frontpage');
         });
     }
 
@@ -57,7 +63,10 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 })
 ```
 
-`Favorite` is the name of one of the default included quick action icons in iOS. You can find a list of them in the [Apple developer documentation.](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType)
+`Favorite` is the name of one of the default included quick action icons in iOS. You can find the whole list of them in the [Apple developer documentation.](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType)
+
+`customicon` is the name of a `.png` image you need to drag into your `Resources` folder in Xcode to use. It needs to be square, single color and at least 35x35.
+
 
 ### Static Home Screen Quick Actions
 
@@ -70,9 +79,9 @@ Static quick actions are presents before your app has been opened for the first 
         <key>UIApplicationShortcutItemIconType</key>
         <string>UIApplicationShortcutIconTypeFavorite</string>
         <key>UIApplicationShortcutItemTitle</key>
-        <string>Favorites</string>
+        <string>Saved</string>
         <key>UIApplicationShortcutItemType</key>
-        <string>favorites</string>
+        <string>saved</string>
     </dict>
 </array>
 ```
@@ -84,10 +93,10 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 .run(function($ionicPlatform, $cordova3DTouch, $state) {
     $ionicPlatform.ready(function() {
 
-        //Add a handler for the static quick action with title: Favorites and a "star" icon
-        $cordova3DTouch.addQuickActionHandler('favorites', function() {
+        //Add a handler for the static quick action with type "saved" 
+        $cordova3DTouch.addQuickActionHandler('saved', function() {
             //Navigate to target state when the quick action was pressed on home screen
-            $state.go('tab.favorite');
+            $state.go('tab.saved');
         });
     }
 
@@ -104,9 +113,9 @@ If you want to use your custom icon add this to your `.plist` file instead:
         <key>UIApplicationShortcutItemIconFile</key>
         <string>customicon</string>
         <key>UIApplicationShortcutItemTitle</key>
-        <string>Favorites</string>
+        <string>Saved</string>
         <key>UIApplicationShortcutItemType</key>
-        <string>favorites</string>
+        <string>saved</string>
     </dict>
 </array>
 ```
