@@ -30,7 +30,7 @@ Add `ngCordova.plugins.3dtouch` as a module dependency of your app.
 Check if the plugin is loaded and the device supports 3D touch:
 
 ```
-$cordova3DTouch.isAvailable(function(result) {
+$cordova3DTouch.isAvailable().then(function(result) {
     console.log(result); //true or false
 });
 ```
