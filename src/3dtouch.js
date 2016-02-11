@@ -1,13 +1,9 @@
 // install   :      cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-3dtouch.git
 // link      :      https://github.com/EddyVerbruggen/cordova-plugin-3dtouch
 
-(function() {
-    'use strict';
+angular.module('ngCordova.plugins.3dtouch', [])
 
-    angular.module('ngCordova.plugins.3dtouch', [])
-        .factory('$cordova3DTouch', cordova3DTouch);
-
-    function cordova3DTouch($q) {
+    .factory('$cordova3DTouch', ['$q', function($q) {
         var quickActions = [];
         var quickActionHandler = {};
 
@@ -16,8 +12,8 @@
                 for (var key in quickActionHandler) {
                     if (payload.type === key) {
                         quickActionHandler[key]();
-                    };
-                };
+                    }
+                }
             };
         };
 
@@ -32,10 +28,10 @@
                 if (!window.cordova) {
                     deferred.reject('Not supported in browser');
                 } else {
-                    if (!ThreeDeeTouch) {
-                        deferred.reject('Could not find 3D touch plugin')
+                    if (!window.ThreeDeeTouch) {
+                        deferred.reject('Could not find 3D touch plugin');
                     } else {
-                        ThreeDeeTouch.isAvailable(function (value) {
+                        window.ThreeDeeTouch.isAvailable(function (value) {
                             deferred.resolve(value);
                         }, function (err) {
                             deferred.reject(err);
@@ -60,9 +56,9 @@
                 var deferred = $q.defer();
 
                 var quickAction = {
-                    type,
-                    title,
-                    subtitle
+                    type: type,
+                    title: title,
+                    subtitle: subtitle
                 };
 
                 if (iconType) {
@@ -76,8 +72,8 @@
                 this.isAvailable().then(function() {
                     quickActions.push(quickAction);
                     quickActionHandler[type] = callback;
-                    ThreeDeeTouch.configureQuickActions(quickActions);
-                    ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    window.ThreeDeeTouch.configureQuickActions(quickActions);
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
                     deferred.resolve(quickActions);
                 },
                 function(err) {
@@ -99,7 +95,7 @@
 
                 this.isAvailable().then(function() {
                     quickActionHandler[type] = callback;
-                    ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
                     deferred.resolve(true);
                 },
                 function(err) {
@@ -118,7 +114,7 @@
                 var deferred = $q.defer();
 
                 this.isAvailable().then(function() {
-                    ThreeDeeTouch.enableLinkPreview();
+                    window.ThreeDeeTouch.enableLinkPreview();
                         deferred.resolve(true);
                 },
                 function(err) {
@@ -138,7 +134,7 @@
                 var deferred = $q.defer();
 
                 this.isAvailable().then(function() {
-                    ThreeDeeTouch.watchForceTouches(callback);
+                    window.ThreeDeeTouch.watchForceTouches(callback);
                     deferred.resolve(true);
                 },
                 function(err) {
@@ -148,8 +144,4 @@
                 return deferred.promise;
             }
         };
-    };
-
-    cordova3DTouch.$inject = ['$q'];
-
-})();
+    }]);
