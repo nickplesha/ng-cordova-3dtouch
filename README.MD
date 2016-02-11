@@ -30,7 +30,7 @@ Add `ngCordova.plugins.3dtouch` as a module dependency of your app.
 Check if the plugin is loaded and the device supports 3D touch:
 
 ```
-$cordova3DTouch.isAvailable(function(result) {
+$cordova3DTouch.isAvailable().then(function(result) {
     console.log(result); //true or false
 });
 ```
@@ -146,7 +146,7 @@ angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
 
 ### Link Preview
 
-You can enable link previews in popups when a link is force pressed.
+You can enable link previews (Peek and Pop) when a link is force pressed.
 
 ```
 angular.module('example', ['ionic', 'ngCordova.plugins.3dtouch'])
